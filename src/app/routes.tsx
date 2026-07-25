@@ -11,6 +11,7 @@ import LoginPage from "./pages/public/LoginPage";
 import RegisterPage from "./pages/public/RegisterPage";
 import RegisterStudentPage from "./pages/public/RegisterStudentPage";
 import RegisterOffererPage from "./pages/public/RegisterOffererPage";
+import ForgotPasswordPage from "./pages/public/ForgotPasswordPage";
 import OpportunityDetailPage, { opportunityDetailLoader } from "./pages/public/OpportunityDetailPage";
 
 import StudentOnboardingPage from "./pages/student/OnboardingPage";
@@ -35,6 +36,7 @@ export const router = createBrowserRouter([
     children: [
       { path: "/", element: <LandingPage /> },
       { path: "/login", element: <LoginPage /> },
+      { path: "/forgot-password", element: <ForgotPasswordPage /> },
       { path: "/register", element: <RegisterPage /> },
       { path: "/register/student", element: <RegisterStudentPage /> },
       { path: "/register/offerer", element: <RegisterOffererPage /> },

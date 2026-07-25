@@ -26,6 +26,8 @@ interface AuthContextValue {
   registerOfferer: (input: RegisterOffererInput) => Promise<void>;
   verifyOtp: (email: string, token: string) => Promise<User>;
   resendCode: (email: string) => Promise<void>;
+  requestPasswordReset: (email: string) => Promise<void>;
+  confirmPasswordReset: (email: string, token: string, newPassword: string) => Promise<User>;
   logout: () => Promise<void>;
   completeOnboarding: () => Promise<void>;
   updateUser: (patch: Partial<User>) => void;
@@ -104,6 +106,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (error) throw new Error(error.message);
   };
 
+  const requestPasswordReset = async (email: string) => {
+    // Supabase returns success here regardless of whether the account exists, so this never
+    // reveals which e-mails are registered.
+    const { error } = await supabase.auth.resetPasswordForEmail(email);
+    if (error) throw new Error(error.message);
+  };
+
+  const confirmPasswordReset = async (email: string, token: string, newPassword: string) => {
+    const { error: verifyError } = await supabase.auth.verifyOtp({ email, token, type: "recovery" });
+    if (verifyError) throw new Error("Código incorreto ou expirado. Verifique e tente novamente.");
+
+    const { error: updateError } = await supabase.auth.updateUser({ password: newPassword });
+    if (updateError) throw new Error(updateError.message);
+
+    const { data } = await supabase.auth.getUser();
+    const profile = data.user ? await loadUser(data.user.id) : null;
+    if (!profile) throw new Error("Não foi possível carregar seu perfil.");
+    setUser(profile);
+    return profile;
+  };
+
   const logout = async () => {
     await supabase.auth.signOut();
     setUser(null);
@@ -136,6 +159,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       registerOfferer,
       verifyOtp,
       resendCode,
+      requestPasswordReset,
+      confirmPasswordReset,
       logout,
       completeOnboarding: completeOnboardingFn,
       updateUser,
