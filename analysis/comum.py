@@ -82,3 +82,83 @@ def pares_elegiveis(vagas, vaga_cursos, alunos, coluna_curso="curso_norm"):
     )
     ok = (pares.periodo_atual >= pares.periodo_min) & (pares.periodo_atual <= pares.periodo_max)
     return pares.loc[ok, ["vaga_id", "aluno_id"]].drop_duplicates()
+
+
+def carregar_bolsas() -> pd.DataFrame:
+    """PIBIC e PIBITI empilhados: uma linha por programa, ano e departamento."""
+    abas = pd.read_excel(DATA / "PibicPibiti_vagasoferecidas.xlsx", sheet_name=None)
+    partes = [
+        df.assign(programa=nome.upper(), Departamento=df.Departamento.str.strip())
+        for nome, df in abas.items()
+    ]
+    return (
+        pd.concat(partes, ignore_index=True)
+        .rename(columns={"Periodo": "ano", "Departamento": "depto", "VagasOferecidas": "bolsas"})
+    )
+
+
+def alunos_graduacao(alunos: pd.DataFrame) -> pd.DataFrame:
+    """Premissa: candidato potencial = aluno de graduação matriculado, sem filtro de
+    período (não há regra oficial de elegibilidade nos dados)."""
+    a = alunos.assign(curso_norm=curso_normalizado(alunos))
+    pos = a.curso_norm.str.startswith("POS")
+    sem_curso = a.curso_norm.str.startswith("S/E")
+    return a[a.matriculado.eq("S") & ~pos & ~sem_curso]
+
+
+# --- Departamento -> cursos ------------------------------------------------------
+# Tabela manual. Liga a sigla do departamento (PIBIC/PIBITI) ou o prefixo da
+# disciplina (monitorias) aos cursos de graduação de alunos.csv. Monitor e bolsista
+# não precisam ser do curso do departamento; a tabela mede o público mais provável.
+_ENGENHARIAS = [
+    "ENGENHARIA DE PRODUCAO", "ENGENHARIA DE COMPUTACAO", "ENGENHARIA MECANICA",
+    "ENGENHARIA CIVIL", "ENGENHARIA QUIMICA", "ENGENHARIA ELETRICA",
+    "ENGENHARIA DE CONTROLE E AUTOMACAO", "ENGENHARIA DE MATERIAIS", "ENGENHARIA AMBIENTAL",
+]
+_COMUNICACAO = ["COMUNICACAO SOCIAL", "ESTUDOS DE MIDIA", "JORNALISMO"]
+CURSOS_DO_DEPTO = {
+    "ADM": ["ADMINISTRACAO"],
+    "ARQ": ["ARQUITETURA E URBANISMO"],
+    "ART": ["DESIGN", "ARQUITETURA E URBANISMO", "ARTES CENICAS"],
+    "BIO": ["CIENCIAS BIOLOGICAS", "NEUROCIENCIAS"],
+    "CETUC": ["ENGENHARIA ELETRICA"],
+    "CIN": _COMUNICACAO,
+    "CIV": ["ENGENHARIA CIVIL", "ENGENHARIA AMBIENTAL"],
+    "COM": _COMUNICACAO,
+    "CTC": _ENGENHARIAS + ["CIENCIA DA COMPUTACAO", "INTELIGENCIA ARTIFICIAL",
+                           "MATEMATICA APLICADA E COMPUTACIONAL", "FISICA", "QUIMICA"],
+    "DAD": ["DESIGN", "ARTES CENICAS"],
+    "DAU": ["ARQUITETURA E URBANISMO"],
+    "DEQM": ["ENGENHARIA QUIMICA", "ENGENHARIA DE MATERIAIS"],
+    "DSG": ["DESIGN"],
+    "ECO": ["ECONOMIA"],
+    "EDU": ["PEDAGOGIA"],
+    "ELE": ["ENGENHARIA ELETRICA", "ENGENHARIA DE CONTROLE E AUTOMACAO"],
+    "ENG": _ENGENHARIAS,
+    "FIL": ["FILOSOFIA"],
+    "FIS": ["FISICA"],
+    "GEO": ["GEOGRAFIA"],
+    "HIS": ["HISTORIA"],
+    "IND": ["ENGENHARIA DE PRODUCAO"],
+    "INF": ["CIENCIA DA COMPUTACAO", "ENGENHARIA DE COMPUTACAO", "INTELIGENCIA ARTIFICIAL"],
+    "IRI": ["RELACOES INTERNACIONAIS"],
+    "JUR": ["DIREITO"],
+    "LET": ["LETRAS"],
+    "MAT": ["MATEMATICA APLICADA E COMPUTACIONAL"],
+    "MEC": ["ENGENHARIA MECANICA", "ENGENHARIA DE CONTROLE E AUTOMACAO"],
+    "NUT": ["NUTRICAO"],
+    "PSI": ["PSICOLOGIA", "NEUROCIENCIAS"],
+    "QUI": ["QUIMICA"],
+    "SER": ["SERVICO SOCIAL"],
+    "SOC": ["CIENCIAS SOCIAIS"],
+    "TEO": ["TEOLOGIA"],
+    # EMP (empreendedorismo) é eletiva aberta a todos os cursos: fica sem mapa.
+}
+
+
+def candidatos_por_depto(alunos_grad: pd.DataFrame) -> pd.Series:
+    por_curso = alunos_grad.curso_norm.value_counts()
+    return pd.Series({
+        d: int(por_curso.reindex(cursos, fill_value=0).sum())
+        for d, cursos in CURSOS_DO_DEPTO.items()
+    })

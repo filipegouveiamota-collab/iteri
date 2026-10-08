@@ -1,0 +1,81 @@
+{
+  "00_escopo_estagio": {
+    "anuncios": 3550,
+    "estagio": 3526,
+    "estagio_pela_maior_empresa_id": 3220,
+    "pct_estagio_pela_maior_empresa_id": 0.907,
+    "empresa_ids": 122
+  },
+  "01_monitorias": {
+    "linhas_originais": 283,
+    "linhas_duplicadas_removidas": 29,
+    "registros": 254,
+    "semestres": [
+      20241,
+      20242,
+      20251,
+      20252
+    ],
+    "monitores_unicos": 177,
+    "monitores_em_mais_de_um_semestre": 10,
+    "disciplinas": 131,
+    "disciplinas_em_3_ou_4_semestres": 19,
+    "departamentos_em_todos_os_semestres": 8,
+    "departamentos": 23,
+    "disciplinas_20252_ja_vistas_antes": "24 de 58",
+    "registros_20252_em_disciplina_ja_vista": 0.526
+  },
+  "02_bolsas_pibic": {
+    "anos_pibic": "2006 a 2026",
+    "anos_pibiti": "2010 a 2026",
+    "bolsas_2026_pibic": 259,
+    "bolsas_2026_pibiti": 41,
+    "bolsas_2026_total": 300,
+    "departamentos_com_bolsa_2026": 26,
+    "top5_deptos_2026": {
+      "INF": 44,
+      "PSI": 26,
+      "QUI": 22,
+      "IND": 16,
+      "COM": 15
+    },
+    "participacao_top5_2026": 0.41,
+    "total_2022_2026_min_max": [
+      281,
+      300
+    ],
+    "deptos_com_amplitude_ate_1_na_janela": "3 de 27"
+  },
+  "03_candidatos_potenciais": {
+    "alunos_graduacao_matriculados": 1952,
+    "alunos_fora_do_mapa": 2,
+    "deptos_com_bolsa_2026": 26,
+    "deptos_sem_mapa": [],
+    "mediana_candidatos_por_bolsa": 4.199999999999999,
+    "deptos_com_bolsa_e_ate_1_candidato_por_bolsa": [
+      "QUI",
+      "HIS",
+      "EDU",
+      "SOC",
+      "MAT",
+      "FIS"
+    ],
+    "deptos_com_bolsa_e_zero_candidatos_no_cadastro": [],
+    "bolsas_2026_em_deptos_com_ate_1_candidato_por_bolsa": 68
+  },
+  "04_interesse_academico": {
+    "alunos_cadastrados": 2187,
+    "alunos_com_interesse_declarado": 713,
+    "rotulos_distintos": 813,
+    "alunos_com_interesse_academico": 33,
+    "pct_dos_que_declararam": 0.046,
+    "alunos_citando_monitoria": 3
+  },
+  "05_anuncios_internos": {
+    "anuncios": 3550,
+    "na_gavea": 19,
+    "citam_puc": 4,
+    "internos_confirmados": 1,
+    "pct_internos": 0.0003
+  }
+}
