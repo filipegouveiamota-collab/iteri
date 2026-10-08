@@ -9,7 +9,7 @@ setores e professores publicam vagas e recebem candidaturas num formato
 padronizado.
 
 - **App:** https://iteri.com.br
-- **Vídeo (2 min):** [PREENCHER: link do YouTube, não listado]
+- **Vídeo (1:57):** [PREENCHER: link do YouTube, não listado] · arquivo em [`video/out/iteri_lia_impact_lab.mp4`](video/out/iteri_lia_impact_lab.mp4) · [roteiro](video/roteiro.md)
 - **Documentação do processo:** [Roteiro](docs/ROTEIRO.md) ·
   [AI Log](docs/AI_LOG.md) · [Relatório Final](docs/RELATORIO_FINAL.md)
 - **Análise de dados:** [`analysis/`](analysis/) · [resultados](analysis/RESULTADOS.md)

@@ -69,13 +69,11 @@ Todo número abaixo sai de `python analysis/run_all.py` (ver `analysis/RESULTADO
 
 ## Qual foi o maior erro produzido pela IA durante o processo, e como foi identificado e corrigido?
 
-[PREENCHER: escolher. Candidatos com evidência:]
-
-- **Números de apresentação sem código que os produzisse.** O deck anterior trazia
+- **O maior: números de apresentação sem código que os produzisse.** O deck anterior trazia
   números de análise e a afirmação de RLS em 12 de 12 tabelas. O repositório não
   tinha scripts nem dados, e as migrations têm 7 tabelas. Identificado ao tentar
   reproduzir cada número; corrigido refazendo a análise em `analysis/` (AI Log, 6).
-- **Falsos positivos no interesse acadêmico.** "Acadêmico" e "científico" soltos
+- **Outro, menor: falsos positivos no interesse acadêmico.** "Acadêmico" e "científico" soltos
   contavam frases genéricas: 38 alunos em vez de 33. Identificado lendo todos os
   rótulos que casaram (AI Log, 8).
 

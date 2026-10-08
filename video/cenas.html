@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>ITERI cenas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #061a1a; --bg2: #0b2626; --line: #1f4040; --text: #e8f5f3; --mute: #9cc3be;
+    --teal: #2dd4bf; --teal-d: #0d9488; --orange: #f97316; --orange-l: #fdba74;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); color: var(--text);
+    font-family: Inter, sans-serif; }
+  .cena { display: none; position: absolute; inset: 0; padding: 90px 120px 230px; }
+  .cena.ativa { display: flex; flex-direction: column; }
+  .bg { position: absolute; inset: 0; z-index: -1;
+    background: radial-gradient(1200px 700px at 85% -10%, rgba(13,148,136,.28), transparent 60%),
+                radial-gradient(900px 600px at -10% 110%, rgba(249,115,22,.14), transparent 60%), var(--bg); }
+  .tag { font: 600 26px Inter; letter-spacing: .18em; text-transform: uppercase; color: var(--teal); display: flex; align-items: center; gap: 16px; }
+  .tag::before { content: ""; width: 16px; height: 16px; background: var(--orange); transform: rotate(45deg); }
+  h1 { font: 800 76px/1.08 Outfit, sans-serif; margin-top: 26px; letter-spacing: -.01em; }
+  h1 em { font-style: normal; color: var(--teal); }
+  h2 { font: 700 46px/1.15 Outfit, sans-serif; }
+  .mute { color: var(--mute); }
+  .row { display: flex; gap: 36px; }
+  .card { background: var(--bg2); border: 1px solid var(--line); border-radius: 24px; padding: 34px 38px; }
+  .big { font: 800 132px/1 Outfit, sans-serif; color: var(--teal); }
+  .big.o { color: var(--orange); }
+  .lab { font: 500 30px/1.35 Inter; color: var(--text); margin-top: 14px; }
+  .src { position: absolute; right: 120px; top: 100px; font: 500 20px Inter; color: #6f9b96; }
+  .logo { height: 56px; }
+  .chip { font: 600 30px Inter; padding: 18px 30px; border-radius: 999px; border: 2px solid var(--teal-d); color: var(--teal); }
+  .shot { border-radius: 18px; box-shadow: 0 30px 80px rgba(0,0,0,.5); border: 1px solid #2a4a4a; }
+  .tbl { width: 100%; border-collapse: separate; border-spacing: 0 18px; font: 500 32px/1.3 Inter; }
+  .tbl th { text-align: left; font: 600 24px Inter; letter-spacing: .14em; text-transform: uppercase; color: var(--mute); padding: 0 30px; }
+  .tbl td { background: var(--bg2); padding: 26px 30px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .tbl td:first-child { border-left: 1px solid var(--line); border-radius: 18px 0 0 18px; width: 46%; }
+  .tbl td:last-child { border-right: 1px solid var(--line); border-radius: 0 18px 18px 0; color: var(--teal); }
+  .bars { display: flex; align-items: flex-end; gap: 18px; height: 300px; margin-top: 70px; }
+  .bar { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 10px; font: 600 24px Inter; }
+  .bar i { display: block; width: 100%; border-radius: 10px 10px 4px 4px; background: var(--teal-d); }
+  .bar.hi i { background: var(--orange); }
+  .bar small { font: 500 20px Inter; color: var(--mute); }
+  .box { background: var(--bg2); border: 2px solid var(--line); border-radius: 20px; padding: 24px 28px; font: 600 30px/1.25 Inter; text-align: center; }
+  .box small { display: block; font: 500 22px/1.3 Inter; color: var(--mute); margin-top: 8px; }
+  .box.t { border-color: var(--teal-d); } .box.o { border-color: var(--orange); }
+  .arrow { font: 600 44px Inter; color: var(--teal); align-self: center; }
+  .dash { border-style: dashed; }
+  ol.steps { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 22px; }
+  ol.steps li { display: flex; gap: 26px; align-items: center; font: 500 34px/1.3 Inter; }
+  ol.steps b { font: 800 44px Outfit; color: var(--orange); width: 40px; }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+
+<!-- 1. Caso e problema -->
+<section class="cena" id="caso">
+  <img class="logo" src="assets/logo-white.svg" alt="ITERI" style="height:84px;align-self:flex-start">
+  <div class="tag" style="margin-top:70px">Caso 1 · Oportunidades integradas</div>
+  <h1>A oportunidade interna existe.<br><em>O aluno não sabe onde procurar.</em></h1>
+  <div class="row" style="margin-top:60px">
+    <div class="chip">Monitoria</div><div class="chip">Iniciação científica</div>
+    <div class="chip">Laboratórios</div><div class="chip">Apoio a eventos</div>
+  </div>
+  <p class="lab mute" style="margin-top:40px">Hoje circulam por indicação, sem canal para publicar e receber candidaturas.</p>
+  <div class="src">Filipe Gouveia Mota · Pedro Henrique C. Kubrusly · LIA Impact Lab · PUC-Rio</div>
+</section>
+
+<!-- 2. Escopo -->
+<section class="cena" id="escopo">
+  <div class="tag">Decisão de escopo</div>
+  <h1>Estágio já tem canal. <em>O ITERI fica com o interno.</em></h1>
+  <div class="row" style="margin-top:56px;align-items:stretch">
+    <div class="card" style="flex:1.3">
+      <div class="big o">90,7%</div>
+      <div class="lab">dos anúncios do vagas.csv (3.220 de 3.550) são estágios publicados por uma única empresa_id, provável agente de integração.</div>
+    </div>
+    <div class="card" style="flex:1">
+      <div class="big">1</div>
+      <div class="lab">anúncio do arquivo é, de fato, oportunidade interna da PUC-Rio.</div>
+    </div>
+  </div>
+  <div class="src">analysis/00_escopo_estagio.py · analysis/05_anuncios_internos.py</div>
+</section>
+
+<!-- 3. Leitura do dado -->
+<section class="cena" id="leitura">
+  <div class="tag">Ler o dado antes de concluir</div>
+  <table class="tbl" style="margin-top:40px">
+    <tr><th>O arquivo diz</th><th>O que concluímos</th></tr>
+    <tr><td>monitorias.csv: monitorias concedidas, 2024.1 a 2025.2</td><td>Histórico, não vaga aberta</td></tr>
+    <tr><td>PIBIC e PIBITI: bolsas oferecidas por departamento e ano</td><td>Sem preenchimento: não falamos em bolsa ociosa</td></tr>
+    <tr><td>IDs de monitores e de alunos vêm de sistemas diferentes</td><td>Não cruzam: cruzamento só por curso</td></tr>
+  </table>
+  <div class="src">analysis/README.md</div>
+</section>
+
+<!-- 4. Achados -->
+<section class="cena" id="achados">
+  <div class="tag">O que o dado mostra</div>
+  <div class="row" style="margin-top:40px;align-items:stretch;flex:1">
+    <div class="card" style="flex:1.25">
+      <h2>300 bolsas PIBIC e PIBITI em 2026</h2>
+      <p class="lab mute" style="font-size:26px">Total estável desde 2022. A divisão muda. Bolsas de Informática:</p>
+      <div class="bars">
+        <div class="bar"><span>4</span><i style="height:18px"></i><small>2022</small></div>
+        <div class="bar"><span>10</span><i style="height:45px"></i><small>2023</small></div>
+        <div class="bar"><span>21</span><i style="height:95px"></i><small>2024</small></div>
+        <div class="bar"><span>32</span><i style="height:145px"></i><small>2025</small></div>
+        <div class="bar hi"><span>44</span><i style="height:200px"></i><small>2026</small></div>
+      </div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:36px">
+      <div class="card" style="flex:1"><div class="big" style="font-size:96px">24 de 58</div>
+        <div class="lab" style="font-size:27px">disciplinas com monitor em 2025.2 já tinham monitor antes. A demanda se repete por departamento.</div></div>
+      <div class="card" style="flex:1"><div class="big o" style="font-size:96px">4,6%</div>
+        <div class="lab" style="font-size:27px">dos alunos com interesse declarado citam pesquisa, docência ou monitoria (33 de 713).</div></div>
+    </div>
+  </div>
+  <div class="src">analysis/01_monitorias.py · 02_bolsas_pibic.py · 04_interesse_academico.py</div>
+</section>
+
+<!-- 5. Produto -->
+<section class="cena" id="produto">
+  <div class="tag">No ar em iteri.com.br</div>
+  <div class="row" style="margin-top:34px;align-items:flex-start">
+    <img class="shot" src="assets/tela_feed.png" style="width:820px">
+    <img class="shot" src="assets/tela_candidatura.png" style="width:820px">
+  </div>
+  <div class="row" style="margin-top:26px;font:500 26px Inter;color:var(--mute);gap:60px">
+    <span>Feed: monitoria, IC, eventos e laboratórios</span><span>Candidatura em um clique e status</span>
+  </div>
+  <div class="src">Telas do app com dados de exemplo</div>
+</section>
+
+<!-- 6. Engenharia -->
+<section class="cena" id="engenharia">
+  <div class="tag">Arquitetura</div>
+  <div class="row" style="margin-top:60px;align-items:stretch">
+    <div class="box t" style="flex:1">Navegador<small>React + Vite, publicado na Vercel</small></div>
+    <div class="arrow">→</div>
+    <div class="box t" style="flex:1">Supabase Auth<small>só e&#8209;mail @puc-rio.br, código por e&#8209;mail</small></div>
+    <div class="arrow">→</div>
+    <div class="box o" style="flex:1.2">Postgres com RLS<small>7 de 7 tabelas; ofertante só vê quem se candidatou</small></div>
+  </div>
+  <div class="row" style="margin-top:40px;align-items:stretch">
+    <div class="box" style="flex:1">Trigger no Postgres<small>pg_net</small></div>
+    <div class="arrow">→</div>
+    <div class="box" style="flex:1">Edge Function<small>send-notification-email</small></div>
+    <div class="arrow">→</div>
+    <div class="box" style="flex:1">Resend<small>aviso de status por e&#8209;mail</small></div>
+  </div>
+  <div class="row" style="margin-top:40px;align-items:stretch">
+    <div class="box dash" style="flex:1">Análise offline em analysis/<small>Python, dados do repositório oficial; gera os números deste vídeo</small></div>
+    <div class="box dash o" style="flex:1">Fora do app<small>recomendação por perfil ainda não implementada</small></div>
+  </div>
+  <div class="src">supabase/migrations · supabase/functions</div>
+</section>
+
+<!-- 7. Processo com IA -->
+<section class="cena" id="ia">
+  <div class="tag">Processo com IA</div>
+  <div class="row" style="margin-top:44px;align-items:stretch">
+    <div class="card" style="flex:.8"><div class="big">9</div><div class="lab">interações registradas no AI Log, cada uma com evidência no repositório</div></div>
+    <div class="card" style="flex:1.2">
+      <h2 style="color:var(--orange-l)">Maior erro</h2>
+      <p class="lab"><span class="mute">Antes:</span> deck com números sem código que os produzisse e "RLS em 12 de 12 tabelas".</p>
+      <p class="lab"><span class="mute">Depois:</span> análise refeita em scripts; o banco tem 7 tabelas, todas com RLS.</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:36px"><p class="lab" style="margin:0"><b style="color:var(--orange)">Menos confiável:</b> a tabela manual que liga departamento a curso.</p></div>
+  <div class="src">docs/AI_LOG.md · docs/RELATORIO_FINAL.md</div>
+</section>
+
+<!-- 8. Fechamento -->
+<section class="cena" id="fim">
+  <div class="row" style="align-items:flex-start;gap:80px">
+    <div style="flex:1">
+      <div class="tag">Próximos passos</div>
+      <ol class="steps" style="margin-top:36px">
+        <li><b>1</b>Interesse acadêmico em lista fechada no cadastro</li>
+        <li><b>2</b>Público de cada departamento visível ao ofertante</li>
+        <li><b>3</b>Monitorias abertas por departamento a cada semestre</li>
+      </ol>
+      <p class="lab mute" style="margin-top:40px">Fora por decisão: estágio e importação dos dados para o app.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:30px;align-items:center">
+      <div class="row" style="gap:30px">
+        <div style="text-align:center"><img src="assets/qr_app.svg" style="width:220px;background:#fff;border-radius:14px;padding:10px"><p class="lab" style="font-size:24px">iteri.com.br</p></div>
+        <div style="text-align:center"><img src="assets/qr_repo.svg" style="width:220px;background:#fff;border-radius:14px;padding:10px"><p class="lab" style="font-size:24px">Repositório</p></div>
+      </div>
+      <p class="mute" style="font:500 22px Inter">github.com/filipegouveiamota-collab/iteri</p>
+    </div>
+  </div>
+  <img class="logo" src="assets/logo-white.svg" alt="ITERI" style="margin-top:auto;align-self:flex-start;height:64px">
+  <div class="src" style="top:auto;bottom:250px">Criação com dados e apoio da PUC-Rio</div>
+</section>
+
+<script>
+  const id = new URLSearchParams(location.search).get("c") || "caso";
+  document.getElementById(id).classList.add("ativa");
+</script>
+</body>
+</html>
