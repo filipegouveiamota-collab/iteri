@@ -11,7 +11,7 @@ Todo número sai de `analysis/RESULTADOS.md`.
 | 0:14.6 a 0:30.1 | escopo | 34 | 2.2 | analysis/00_escopo_estagio.py |
 | 0:30.1 a 0:42.2 | leitura | 28 | 2.3 | analysis/README.md |
 | 0:42.2 a 1:05.0 | achados | 47 | 2.1 | analysis/01, 02 e 04 |
-| 1:05.0 a 1:17.7 | produto | 36 | 2.8 | app em produção; telas com dados de exemplo |
+| 1:05.0 a 1:17.7 | produto | 36 | 2.8 | perfil real em produção (conta de teste) e feed de exemplo |
 | 1:17.7 a 1:29.2 | engenharia | 29 | 2.5 | supabase/migrations, supabase/functions |
 | 1:29.2 a 1:44.9 | ia | 35 | 2.2 | docs/AI_LOG.md, docs/RELATORIO_FINAL.md |
 | 1:44.9 a 1:56.7 | fim | 24 | 2.0 | docs/RELATORIO_FINAL.md |
