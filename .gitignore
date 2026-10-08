@@ -21,3 +21,7 @@ Thumbs.db
 
 .vercel
 .env*
+
+# Dados do Impact Lab: baixados por analysis/baixar_dados.py, não redistribuir
+analysis/data/
+__pycache__/
